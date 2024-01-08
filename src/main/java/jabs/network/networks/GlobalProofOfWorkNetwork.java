@@ -27,6 +27,7 @@ public abstract class GlobalProofOfWorkNetwork<N extends Node, M extends MinerNo
     public void startAllMiningProcesses() {
         List<MinerNode> allMiners = this.getAllMiners();
         for (MinerNode miner: allMiners) {
+            System.err.println("Miner:" + miner.toString());
             miner.startMining();
         }
     }

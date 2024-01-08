@@ -12,6 +12,7 @@ import java.nio.file.Path;
 public class BlockGenerationLogger extends AbstractCSVLogger {
     /**
      * creates an abstract CSV logger
+     *
      * @param writer this is output CSV of the logger
      */
     public BlockGenerationLogger(Writer writer) {
@@ -20,6 +21,7 @@ public class BlockGenerationLogger extends AbstractCSVLogger {
 
     /**
      * creates an abstract CSV logger
+     *
      * @param path this is output path of CSV file
      */
     public BlockGenerationLogger(Path path) throws IOException {
@@ -28,8 +30,7 @@ public class BlockGenerationLogger extends AbstractCSVLogger {
 
     @Override
     protected String csvStartingComment() {
-        return String.format("Simulation name: %s      Number of nodes: %d      Network type: %s", scenario.getName(),
-                this.scenario.getNetwork().getAllNodes().size(), this.scenario.getNetwork().getClass().getSimpleName());
+        return String.format("Simulation name: %s      Number of nodes: %d      Network type: %s", scenario.getName(), this.scenario.getNetwork().getAllNodes().size(), this.scenario.getNetwork().getClass().getSimpleName());
     }
 
     @Override
@@ -57,9 +58,6 @@ public class BlockGenerationLogger extends AbstractCSVLogger {
         MinerNode miner = ((BlockMiningProcess) event).getMiner();
         Node node = ((Node) miner);
 
-        return new String[]{
-                Double.toString(this.scenario.getSimulator().getSimulationTime()),
-                Double.toString(node.nodeID),
-        };
+        return new String[]{Double.toString(this.scenario.getSimulator().getSimulationTime()), Double.toString(node.nodeID),};
     }
 }

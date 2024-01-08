@@ -40,7 +40,9 @@ public class BlockPropagationDelayLogger extends AbstractCSVLogger {
 
     @Override
     protected String csvStartingComment() {
-        return String.format("Simulation name: %s      Number of nodes: %d      Network type: %s", scenario.getName(),
+        return String.format("Simulation name: %s" +
+                        "Number of nodes: %d      " +
+                        "Network type: %s", scenario.getName(),
                 this.scenario.getNetwork().getAllNodes().size(), this.scenario.getNetwork().getClass().getSimpleName());
     }
 

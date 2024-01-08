@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author habib yajam
  */
-public abstract class AbstractBlockchainP2PConnections extends AbstractP2PConnections {
+    public abstract class AbstractBlockchainP2PConnections extends AbstractP2PConnections {
     protected final int numOutboundConnections;
     private final int maxConnections;
 

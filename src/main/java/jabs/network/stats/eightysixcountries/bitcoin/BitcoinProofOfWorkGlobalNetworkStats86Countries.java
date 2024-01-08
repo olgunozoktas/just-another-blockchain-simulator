@@ -52,7 +52,7 @@ public class BitcoinProofOfWorkGlobalNetworkStats86Countries extends BitcoinNode
      */
     @Override
     public double shareOfMinersToAllNodes() {
-        return BITCOIN_NUM_MINERS_2022/(double)BITCOIN_NUM_NODES_2022;
+        return BITCOIN_NUM_MINERS_2022 / (double) BITCOIN_NUM_NODES_2022;
     }
 
     @Override

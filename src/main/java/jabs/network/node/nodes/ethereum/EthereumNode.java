@@ -71,10 +71,10 @@ public class EthereumNode extends PeerBlockchainNode<EthereumBlock, EthereumTx> 
         broadcastTransaction(TransactionFactory.sampleEthereumTransaction(network.getRandom()));
     }
 
-    protected void broadcastNewBlockAndBlockHashes(EthereumBlock ethereumBlock){
+    protected void broadcastNewBlockAndBlockHashes(EthereumBlock ethereumBlock) {
         for (int i = 0; i < this.p2pConnections.getNeighbors().size(); i++) {
             Node neighbor = this.p2pConnections.getNeighbors().get(i);
-            if (i < sqrt(this.p2pConnections.getNeighbors().size())){
+            if (i < sqrt(this.p2pConnections.getNeighbors().size())) {
                 this.networkInterface.addToUpLinkQueue(
                         new Packet(this, neighbor,
                                 new DataMessage(ethereumBlock)
@@ -91,8 +91,8 @@ public class EthereumNode extends PeerBlockchainNode<EthereumBlock, EthereumTx> 
     }
 
     protected void broadcastTransaction(EthereumTx tx, Node excludeNeighbor) {
-        for (Node neighbor:this.p2pConnections.getNeighbors()) {
-            if (neighbor != excludeNeighbor){
+        for (Node neighbor : this.p2pConnections.getNeighbors()) {
+            if (neighbor != excludeNeighbor) {
                 this.networkInterface.addToUpLinkQueue(
                         new Packet(this, neighbor,
                                 new DataMessage(tx)
@@ -105,5 +105,4 @@ public class EthereumNode extends PeerBlockchainNode<EthereumBlock, EthereumTx> 
     protected void broadcastTransaction(EthereumTx tx) {
         broadcastTransaction(tx, null);
     }
-
 }

@@ -23,6 +23,7 @@ import java.nio.file.Path;
 public class FinalUncleBlocksLogger extends AbstractCSVLogger {
     /**
      * creates an abstract CSV logger
+     *
      * @param writer this is output CSV of the logger
      */
     public FinalUncleBlocksLogger(Writer writer) {
@@ -31,6 +32,7 @@ public class FinalUncleBlocksLogger extends AbstractCSVLogger {
 
     /**
      * creates an abstract CSV logger
+     *
      * @param path this is output path of CSV file
      */
     public FinalUncleBlocksLogger(Path path) throws IOException {

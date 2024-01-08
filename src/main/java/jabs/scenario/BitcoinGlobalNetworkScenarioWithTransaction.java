@@ -1,13 +1,13 @@
 package jabs.scenario;
 
 import jabs.consensus.config.NakamotoConsensusConfig;
-import jabs.ledgerdata.bitcoin.BitcoinBlockWithoutTx;
-import jabs.network.networks.bitcoin.BitcoinGlobalProofOfWorkNetworkWithoutTx;
+import jabs.ledgerdata.bitcoin.BitcoinBlockWithTx;
+import jabs.network.networks.bitcoin.BitcoinGlobalProofOfWorkNetwork;
 import jabs.network.stats.eightysixcountries.bitcoin.BitcoinProofOfWorkGlobalNetworkStats86Countries;
 
 import static jabs.network.stats.eightysixcountries.bitcoin.BitcoinProofOfWorkGlobalNetworkStats86Countries.BITCOIN_DIFFICULTY_2022;
 
-public class BitcoinGlobalNetworkScenario extends AbstractScenario {
+public class BitcoinGlobalNetworkScenarioWithTransaction extends AbstractScenario {
     public final double stopTime;
     public final double averageBlockInterval;
     public final int confirmationDepth;
@@ -22,7 +22,7 @@ public class BitcoinGlobalNetworkScenario extends AbstractScenario {
      * @param averageBlockInterval This determines the interval between two block generations in seconds.
      * @param confirmationDepth    The depth at which a block is considered confirmed (eg. 6)
      */
-    public BitcoinGlobalNetworkScenario(String name, long seed, long stopTime, double averageBlockInterval, int confirmationDepth) {
+    public BitcoinGlobalNetworkScenarioWithTransaction(String name, long seed, long stopTime, double averageBlockInterval, int confirmationDepth) {
         super(name, seed);
         this.stopTime = stopTime;
         this.averageBlockInterval = averageBlockInterval;
@@ -34,12 +34,13 @@ public class BitcoinGlobalNetworkScenario extends AbstractScenario {
      */
     @Override
     protected void createNetwork() {
-        BitcoinGlobalProofOfWorkNetworkWithoutTx<?> bitcoinNetwork = new BitcoinGlobalProofOfWorkNetworkWithoutTx<>(randomnessEngine, new BitcoinProofOfWorkGlobalNetworkStats86Countries(randomnessEngine));
+        BitcoinGlobalProofOfWorkNetwork<?> bitcoinNetwork = new BitcoinGlobalProofOfWorkNetwork<>(randomnessEngine, new BitcoinProofOfWorkGlobalNetworkStats86Countries(randomnessEngine));
+        System.err.print("Bitcoin network formed\n");
         this.network = bitcoinNetwork;
         bitcoinNetwork.populateNetwork(
                 simulator,
                 new NakamotoConsensusConfig(
-                        BitcoinBlockWithoutTx.generateGenesisBlock(BITCOIN_DIFFICULTY_2022),
+                        BitcoinBlockWithTx.generateGenesisBlock(BITCOIN_DIFFICULTY_2022),
                         this.averageBlockInterval,
                         this.confirmationDepth
                 )
@@ -51,7 +52,7 @@ public class BitcoinGlobalNetworkScenario extends AbstractScenario {
      */
     @Override
     protected void insertInitialEvents() {
-        ((BitcoinGlobalProofOfWorkNetworkWithoutTx<?>) network).startAllMiningProcesses();
+        ((BitcoinGlobalProofOfWorkNetwork<?>) network).startAllMiningProcesses();
     }
 
     /**
