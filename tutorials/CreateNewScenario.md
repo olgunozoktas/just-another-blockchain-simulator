@@ -9,6 +9,13 @@ To Create a new scenario file under `src/main/java/jabs/scenarios` folder.
 - In every scenario there must be a createNetwork method which creates the network and returns the network object.
 - In every scenario there must be a insertInitialEvents method which inserts the initial events to the network.
 
+Each scenario file must extends `AbstractScenario` class.
+
+To run your scenario you need to add your scenario to `src/main/java/jabs/Main.java` file.
+Also, you need to call `run` method of your scenario in `src/main/java/jabs/Main.java` file.
+
+After you run your scenario it initializes the network and inserts the initial events to the network. Then it starts to simulate.
+
 ## How to create a Network for your scenario
 
 Network is necessary for every blockchain simulation and it is the main class that holds all the information about the
