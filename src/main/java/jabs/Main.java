@@ -68,10 +68,10 @@ public class Main {
             scenario.AddNewLogger(new PBFTCSVLogger(Paths.get("output/pbft-simulation-log.csv")));
             scenario.run();
         } else if (consensus.equals(RANKLY)) {
-            // Simulate PBFT Lan network of 40 nodes for 1 hour
-            scenario = new RanklyNetworkScenario("One hour of a PBFT lan Network", 1,
-                    40, 3600);
-//            scenario.AddNewLogger(new PBFTCSVLogger(Paths.get("output/pbft-simulation-log.csv")));
+            scenario = new RanklyNetworkScenario(
+                    "One hour of a Rankly Network Scenario",
+                    1, 100, 3600, 10
+            );
             scenario.run();
         } else {
             // Simulate Snow LAN network of 40 nodes for 1 hour

@@ -1,6 +1,7 @@
-package jabs.network.networks;
+package jabs.network.networks.rankly;
 
 import jabs.consensus.config.ConsensusAlgorithmConfig;
+import jabs.network.networks.Network;
 import jabs.network.node.nodes.Node;
 import jabs.network.node.nodes.rankly.RanklyNode;
 import jabs.network.stats.lan.LAN100MNetworkStats;

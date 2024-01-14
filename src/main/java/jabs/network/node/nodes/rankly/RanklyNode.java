@@ -52,7 +52,7 @@ public class RanklyNode extends PeerBlockchainNode<RanklyBlock, RanklyTransactio
 
     @Override
     protected void processNewVote(Vote vote) {
-        ((PBFT<PBFTBlock, PBFTTx>) this.consensusAlgorithm).newIncomingVote(vote);
+
     }
 
     @Override

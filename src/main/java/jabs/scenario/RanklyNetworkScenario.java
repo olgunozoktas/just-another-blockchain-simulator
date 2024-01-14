@@ -1,8 +1,25 @@
 package jabs.scenario;
 
+import jabs.consensus.config.PBFTConsensusConfig;
+import jabs.network.networks.pbft.PBFTLocalLANNetwork;
+import jabs.network.networks.rankly.RanklyLocalLANNetwork;
+
+/**
+ * File: RanklyNetworkScenario.java
+ */
 public class RanklyNetworkScenario extends AbstractScenario {
 
+    /**
+     * numNodes determines the number of nodes in the network
+     */
+    protected int numNodes;
+    /**
+     * stopTime determines the time that simulation should stop
+     */
     public final double stopTime;
+    /**
+     * averageBlockInterval determines the interval between two block generations in seconds.
+     */
     public final double averageBlockInterval;
 
     /**
@@ -14,15 +31,17 @@ public class RanklyNetworkScenario extends AbstractScenario {
      * @param stopTime             this determines how many seconds of simulation world time should it last.
      * @param averageBlockInterval This determines the interval between two block generations in seconds.
      */
-    public RanklyNetworkScenario(String name, long seed, long stopTime, double averageBlockInterval) {
+    public RanklyNetworkScenario(String name, long seed, int numNodes, long stopTime, double averageBlockInterval) {
         super(name, seed);
+        this.numNodes = numNodes;
         this.stopTime = stopTime;
         this.averageBlockInterval = averageBlockInterval;
     }
 
     @Override
     protected void createNetwork() {
-
+        network = new RanklyLocalLANNetwork(randomnessEngine);
+        network.populateNetwork(this.simulator, this.numNodes, new PBFTConsensusConfig());
     }
 
     @Override
