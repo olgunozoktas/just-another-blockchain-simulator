@@ -12,5 +12,8 @@ To Create a new scenario file under `src/main/java/scenarios` folder.
 ## How to create a Network for your scenario
 
 Network is necessary for every blockchain simulation. In order to create a network you need to create a new class that extends `Network` class.
+- Network class has a constructor which takes a `RandomnessEngine` and `NetworkStats` as an argument. 
+  - You can use `NetworkConfiguration` class to configure your network.
+- 
 
 - You can use `src/main/java/networks/NetworkTemplate.java` as a template.
