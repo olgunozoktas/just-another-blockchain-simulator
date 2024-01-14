@@ -39,7 +39,7 @@ public class RanklyLocalLANNetwork extends Network<RanklyNode, SingleNodeType> {
     }
 
     /**
-     * @param node A PBFT node to add to the network
+     * @param node A Rankly node to add to the network
      */
     @Override
     public void addNode(RanklyNode node) {

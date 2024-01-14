@@ -11,12 +11,13 @@ To Create a new scenario file under `src/main/java/jabs/scenarios` folder.
 
 ## How to create a Network for your scenario
 
-Network is necessary for every blockchain simulation and it is the main class that holds all the information about the network such as;
+Network is necessary for every blockchain simulation and it is the main class that holds all the information about the
+network such as;
 
 - [x] Nodes
 - [x] NodeTypes
 - [x] NetworkStats such as latency, bandwidth, etc.
-- [x] RandomnessEngine 
+- [x] RandomnessEngine
 - [ ] NetworkEvents
 - [ ] NetworkEventQueue
 - [ ] NetworkEventExecutor
@@ -36,3 +37,15 @@ In order to create a network you need to create a new class that extends `Networ
     - As default `RandomnessEngine` uses MersenneTwister algorithm which is a fast and good random number generator in
       simulation.
 
+- To make sure your network runs properly you need to add nodes into the system. You can either use any Node classes
+  that you like or you can create your own under `src/main/java/jabs/node/nodes` folder.
+
+## How to create a Node for your scenario
+
+Node is necessary for every blockchain simulation, and it is the main class that holds all the information about the
+node itself, transactions and other nodes in the network and this information is used to simulate the network. However, you
+can design your node class however you like.
+
+- You can use `src/main/java/jabs/node/nodes/NodeTemplate.java` as a template.
+
+Things you should care about that node must extends `Node` class.

@@ -110,6 +110,7 @@ public abstract class Node {
             );
         }
     }
+
     /**
      * Forces the node to respond a message to the inquirer
      * @param message The message to be responded
