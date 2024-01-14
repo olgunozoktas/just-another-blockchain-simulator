@@ -5,18 +5,20 @@ import jabs.consensus.blockchain.LocalBlockTree;
 import jabs.ledgerdata.Vote;
 import jabs.ledgerdata.rankly.RanklyBlock;
 import jabs.ledgerdata.rankly.RanklyTransaction;
+import jabs.ledgerdata.template.BlockTemplate;
+import jabs.ledgerdata.template.TransactionTemplate;
 import jabs.network.networks.Network;
 import jabs.network.p2p.SnowP2P;
 import jabs.simulator.Simulator;
 
 /**
- * A node for the Rankly blockchain
+ * A node for the Template blockchain
  */
-public class NodeTemplate extends PeerBlockchainNode<RanklyBlock, RanklyTransaction> {
+public class NodeTemplate extends PeerBlockchainNode<BlockTemplate, TransactionTemplate> {
     /**
-     * The genesis block for the Rankly blockchain
+     * The genesis block for the Template blockchain
      */
-    public static final RanklyBlock RANKLY_GENESIS_BLOCK = new RanklyBlock(0, 0, 0, null, null);
+    public static final BlockTemplate GENESIS_BLOCK = new BlockTemplate(0, 0, 0, null, null);
 
     /**
      * @param simulator          The simulator that the node is running on
@@ -27,20 +29,17 @@ public class NodeTemplate extends PeerBlockchainNode<RanklyBlock, RanklyTransact
      * @param numAllParticipants The number of all participants in the network
      */
     public NodeTemplate(Simulator simulator, Network network, int nodeID, long downloadBandwidth, long uploadBandwidth, int numAllParticipants) {
-        super(simulator, network, nodeID, downloadBandwidth, uploadBandwidth,
-                new SnowP2P(),
-                new Snow<>(new LocalBlockTree<>(RANKLY_GENESIS_BLOCK), numAllParticipants)
-        );
+        super(simulator, network, nodeID, downloadBandwidth, uploadBandwidth, new SnowP2P(), new Snow<>(new LocalBlockTree<>(GENESIS_BLOCK), numAllParticipants));
         this.consensusAlgorithm.setNode(this);
     }
 
     @Override
-    protected void processNewTx(RanklyTransaction tx, Node from) {
+    protected void processNewTx(TransactionTemplate tx, Node from) {
         // nothing for now
     }
 
     @Override
-    protected void processNewBlock(RanklyBlock block) {
+    protected void processNewBlock(BlockTemplate block) {
         // nothing for now
     }
 

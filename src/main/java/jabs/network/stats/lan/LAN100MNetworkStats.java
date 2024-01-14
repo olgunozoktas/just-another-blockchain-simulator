@@ -3,6 +3,9 @@ package jabs.network.stats.lan;
 import jabs.network.stats.NetworkStats;
 import jabs.simulator.randengine.RandomnessEngine;
 
+/**
+ * File: LAN100MNetworkStats.java
+ */
 public class LAN100MNetworkStats implements NetworkStats<SingleNodeType> {
     protected final RandomnessEngine randomnessEngine;
     /**
@@ -19,6 +22,9 @@ public class LAN100MNetworkStats implements NetworkStats<SingleNodeType> {
     protected static final long LAN_AVERAGE_BANDWIDTH = 100000000;
 
 
+    /**
+     * @param randomnessEngine The randomness engine to use for samplingz
+     */
     public LAN100MNetworkStats(RandomnessEngine randomnessEngine) {
         this.randomnessEngine = randomnessEngine;
     }

@@ -9,11 +9,23 @@ import jabs.network.stats.lan.SingleNodeType;
 import jabs.simulator.Simulator;
 import jabs.simulator.randengine.RandomnessEngine;
 
+/**
+ * A network for the Rankly blockchain
+ */
 public class RanklyLocalLANNetwork extends Network<RanklyNode, SingleNodeType> {
+    /**
+     * @param randomnessEngine The randomness engine to use for the network
+     */
     public RanklyLocalLANNetwork(RandomnessEngine randomnessEngine) {
         super(randomnessEngine, new LAN100MNetworkStats(randomnessEngine));
     }
 
+    /**
+     * @param simulator          The simulator that the network is running on
+     * @param nodeID             The ID of the node
+     * @param numAllParticipants The number of all participants in the network
+     * @return A new Rankly node
+     */
     public RanklyNode createNewRanklyNode(Simulator simulator, int nodeID, int numAllParticipants) {
         return new RanklyNode(simulator, this, nodeID,
                 this.sampleDownloadBandwidth(SingleNodeType.LAN_NODE),

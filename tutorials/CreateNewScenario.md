@@ -43,9 +43,14 @@ In order to create a network you need to create a new class that extends `Networ
 ## How to create a Node for your scenario
 
 Node is necessary for every blockchain simulation, and it is the main class that holds all the information about the
-node itself, transactions and other nodes in the network and this information is used to simulate the network. However, you
+node itself, transactions and other nodes in the network and this information is used to simulate the network. However,
+you
 can design your node class however you like.
 
 - You can use `src/main/java/jabs/node/nodes/NodeTemplate.java` as a template.
 
-Things you should care about that node must extends `Node` class.
+NodeTemplate extends BlockTemplate and TransactionTemplate classes which are the main classes for blocks and
+transactions so you can use them as a template for your own block and transaction classes.
+
+- You can use `src/main/java/jabs/ledgerdata/template/BlockTemplate.java` as a template.
+- You can use `src/main/java/jabs/ledgerdata/template/TransactionTemplate.java` as a template.
