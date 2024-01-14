@@ -4,22 +4,22 @@ import jabs.ledgerdata.Vote;
 import jabs.ledgerdata.pbft.PBFTCommitVote;
 import jabs.ledgerdata.pbft.PBFTPrePrepareVote;
 import jabs.ledgerdata.pbft.PBFTPrepareVote;
-import jabs.simulator.event.Event;
-import jabs.simulator.event.PacketDeliveryEvent;
 import jabs.network.message.Packet;
 import jabs.network.message.VoteMessage;
+import jabs.simulator.event.Event;
+import jabs.simulator.event.PacketDeliveryEvent;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Path;
 
-public class PBFTCSVLogger extends AbstractCSVLogger {
+public class RanklyCSVLogger extends AbstractCSVLogger {
     /**
      * creates an abstract CSV logger
      *
      * @param writer this is output CSV of the logger
      */
-    public PBFTCSVLogger(Writer writer) {
+    public RanklyCSVLogger(Writer writer) {
         super(writer);
     }
 
@@ -28,13 +28,13 @@ public class PBFTCSVLogger extends AbstractCSVLogger {
      *
      * @param path this is output path of CSV file
      */
-    public PBFTCSVLogger(Path path) throws IOException {
+    public RanklyCSVLogger(Path path) throws IOException {
         super(path);
     }
 
     @Override
     protected String csvStartingComment() {
-        return String.format("PBFT Simulation with %d nodes on %s network", this.scenario.getNetwork().getAllNodes().size(), this.scenario.getNetwork().getClass().getSimpleName());
+        return String.format("Rankly Simulation with %d nodes on %s network", this.scenario.getNetwork().getAllNodes().size(), this.scenario.getNetwork().getClass().getSimpleName());
     }
 
     @Override

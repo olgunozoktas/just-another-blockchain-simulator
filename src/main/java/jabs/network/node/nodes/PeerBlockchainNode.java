@@ -37,13 +37,13 @@ public abstract class PeerBlockchainNode<B extends SingleParentBlock<B>, T exten
             Data data = ((DataMessage) message).getData();
             if (data instanceof Block) {
                 B block = (B) data;
-                if (!localBlockTree.contains(block)){
+                if (!localBlockTree.contains(block)) {
                     localBlockTree.add(block);
                     alreadySeenBlocks.put(block.getHash(), block);
                     if (localBlockTree.getLocalBlock(block).isConnectedToGenesis) {
                         this.processNewBlock(block);
                         SortedSet<B> newBlocks = new TreeSet<>(localBlockTree.getAllSuccessors(block));
-                        for (B newBlock:newBlocks){
+                        for (B newBlock : newBlocks) {
                             this.processNewBlock(newBlock);
                         }
                     } else {
@@ -56,14 +56,14 @@ public abstract class PeerBlockchainNode<B extends SingleParentBlock<B>, T exten
                 }
             } else if (data instanceof Tx) {
                 T tx = (T) data;
-                if (!alreadySeenTxs.containsValue(tx)){
+                if (!alreadySeenTxs.containsValue(tx)) {
                     alreadySeenTxs.put(tx.getHash(), tx);
                     this.processNewTx(tx, packet.getFrom());
                 }
             }
         } else if (message instanceof InvMessage) {
             Hash hash = ((InvMessage) message).getHash();
-            if (hash.getData() instanceof Block){
+            if (hash.getData() instanceof Block) {
                 if (!alreadySeenTxs.containsKey(hash)) {
                     alreadySeenTxs.put(hash, null);
                     this.networkInterface.addToUpLinkQueue(
@@ -113,7 +113,7 @@ public abstract class PeerBlockchainNode<B extends SingleParentBlock<B>, T exten
                 alreadySeenVotes.add(vote);
                 this.processNewVote(vote);
             }
-        }else if (message instanceof QueryMessage) {
+        } else if (message instanceof QueryMessage) {
             Query query = ((QueryMessage) message).getQuery();
             if (!alreadySeenQueries.contains(query)) {
                 alreadySeenQueries.add(query);
@@ -123,7 +123,9 @@ public abstract class PeerBlockchainNode<B extends SingleParentBlock<B>, T exten
     }
 
     protected abstract void processNewBlock(B block);
+
     protected abstract void processNewVote(Vote vote);
+
     protected abstract void processNewQuery(Query query);
 
     public AbstractChainBasedConsensus<B, T> getConsensusAlgorithm() {

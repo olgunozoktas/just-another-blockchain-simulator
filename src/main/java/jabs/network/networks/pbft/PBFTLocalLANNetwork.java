@@ -1,8 +1,6 @@
 package jabs.network.networks.pbft;
 
-import jabs.consensus.algorithm.PBFT;
 import jabs.consensus.config.ConsensusAlgorithmConfig;
-import jabs.consensus.config.PBFTConsensusConfig;
 import jabs.network.networks.Network;
 import jabs.network.stats.lan.LAN100MNetworkStats;
 import jabs.network.stats.lan.SingleNodeType;

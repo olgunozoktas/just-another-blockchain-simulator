@@ -36,9 +36,9 @@ public class RoundRobinConsensus<B extends SingleParentBlock<B>, T extends Tx<T>
         int currentHeight = block.getHeight();
 
         boolean flag = false;
-        for(int i = 0; i < spacingMinus1 - 1; i++) {
-            B parentIBlock = localBlockTree.getAncestorOfHeight(block,currentHeight - (i + 1));
-            if(parentIBlock.getCreator().getNodeID() == currentId) {
+        for (int i = 0; i < spacingMinus1 - 1; i++) {
+            B parentIBlock = localBlockTree.getAncestorOfHeight(block, currentHeight - (i + 1));
+            if (parentIBlock.getCreator().getNodeID() == currentId) {
                 flag = true;
             }
         }
@@ -54,7 +54,7 @@ public class RoundRobinConsensus<B extends SingleParentBlock<B>, T extends Tx<T>
     protected void updateChain() {
         if (currentMainChainHead.getHeight() > confirmationDepth) {
             int heightOfConfirmedBlocks = currentMainChainHead.getHeight() - confirmationDepth;
-            B highestConfirmedBlock =  localBlockTree.getAncestorOfHeight(currentMainChainHead, heightOfConfirmedBlocks);
+            B highestConfirmedBlock = localBlockTree.getAncestorOfHeight(currentMainChainHead, heightOfConfirmedBlocks);
             this.confirmedBlocks = this.localBlockTree.getAllAncestors(highestConfirmedBlock);
             Simulator simulator = this.peerDLTNode.getSimulator();
             double currentTime = simulator.getSimulationTime();
@@ -73,21 +73,23 @@ public class RoundRobinConsensus<B extends SingleParentBlock<B>, T extends Tx<T>
         List<Integer> permittedMiners = null;
         int currentHeight = currentMainChainHead.getHeight() + 1;
         int firstMinerID = currentHeight % numOfMiners;
-        if(firstMinerID == 0) {
+        if (firstMinerID == 0) {
             firstMinerID = numOfMiners;
         }
-        int upperBound = firstMinerID + numOfMiners - spacingMinus1-1;
-        for(int i = firstMinerID; i <= upperBound; i++) {
-            if((upperBound) > numOfMiners) {
+        int upperBound = firstMinerID + numOfMiners - spacingMinus1 - 1;
+        for (int i = firstMinerID; i <= upperBound; i++) {
+            if ((upperBound) > numOfMiners) {
                 int temp = upperBound % numOfMiners;
                 permittedMiners.add(temp);
-            }
-            else {
+            } else {
                 permittedMiners.add(i);
             }
         }
         //if(permittedMiners.contains(this.peerDLTNode.getNodeID())) {return  true;}
-        if(permittedMiners.contains(block.getCreator().getNodeID())) {return  true;}
-        else { return false;}
+        if (permittedMiners.contains(block.getCreator().getNodeID())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

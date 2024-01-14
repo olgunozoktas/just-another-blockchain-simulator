@@ -1,7 +1,6 @@
-package jabs.network.networks.rankly;
+package jabs.network.networks;
 
 import jabs.consensus.config.ConsensusAlgorithmConfig;
-import jabs.network.networks.Network;
 import jabs.network.node.nodes.Node;
 import jabs.network.node.nodes.rankly.RanklyNode;
 import jabs.network.stats.lan.LAN100MNetworkStats;
@@ -9,8 +8,8 @@ import jabs.network.stats.lan.SingleNodeType;
 import jabs.simulator.Simulator;
 import jabs.simulator.randengine.RandomnessEngine;
 
-public class RanklyLocalLANNetwork extends Network<RanklyNode, SingleNodeType> {
-    public RanklyLocalLANNetwork(RandomnessEngine randomnessEngine) {
+public class NetworkTemplate extends Network<RanklyNode, SingleNodeType> {
+    public NetworkTemplate(RandomnessEngine randomnessEngine) {
         super(randomnessEngine, new LAN100MNetworkStats(randomnessEngine));
     }
 

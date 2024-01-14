@@ -22,7 +22,7 @@ public class Main {
         String SNOWLAN = "snowlan";
         String RANKLY = "rankly";
 
-        String consensus = BITCOIN;
+        String consensus = RANKLY;
 
         if (consensus.equals(BITCOIN)) {
             int seed = 1;
@@ -39,7 +39,7 @@ public class Main {
             // Simulate one day in the life of Bitcoin network
             // Nakamoto protocol with block every 600 seconds
             // Around 8000 nodes with 30 miners
-            scenario = new BitcoinGlobalNetworkScenarioWithTransaction("One day in the life of Bitcoin", seed, stopTime, averageBlockInterval, confirmationDepth);
+            scenario = new BitcoinGlobalNetworkScenario("One day in the life of Bitcoin", seed, stopTime, averageBlockInterval, confirmationDepth);
             scenario.AddNewLogger(new BlockConfirmationLogger(Paths.get("output/bitcoin-confirmations-log.csv")));
             scenario.AddNewLogger(new BlockPropagationDelayLogger(
                     Paths.get("output/bitcoin-50-propagation-delay-log.csv"), 0.5));
@@ -66,6 +66,12 @@ public class Main {
             scenario = new PBFTLANScenario("One hour of a PBFT lan Network", 1,
                     40, 3600);
             scenario.AddNewLogger(new PBFTCSVLogger(Paths.get("output/pbft-simulation-log.csv")));
+            scenario.run();
+        } else if (consensus.equals(RANKLY)) {
+            // Simulate PBFT Lan network of 40 nodes for 1 hour
+            scenario = new RanklyNetworkScenario("One hour of a PBFT lan Network", 1,
+                    40, 3600);
+//            scenario.AddNewLogger(new PBFTCSVLogger(Paths.get("output/pbft-simulation-log.csv")));
             scenario.run();
         } else {
             // Simulate Snow LAN network of 40 nodes for 1 hour
